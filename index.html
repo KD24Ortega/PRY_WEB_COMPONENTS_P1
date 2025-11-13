@@ -3,27 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CineApp Mini</title>
-  <link rel="stylesheet" href="./public/css/styles.css" />
+  <title>RetroRank • Películas</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="public/css/styles.css" />
 </head>
-<body>
-  <header class="header">
-    <h1>🎥 CineApp Mini</h1>
-    <p>Tu catálogo local de películas favoritas</p>
+
+<body class="cinema-body">
+  <!-- HEADER -->
+  <header class="cinema-header">
+    <div class="container header-inner">
+      <div class="logo-area">
+        <div class="logo-clapper">
+          <span class="logo-clapper-top"></span>
+          <span class="logo-clapper-body">RR</span>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">RetroRank</span>
+          <span class="logo-subtitle">Rate · Review · Enjoy</span>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#hero">Inicio</a>
+        <a href="#now-showing">Populares</a>
+        <a href="#favorites">Favoritos</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <h2>🎞️ Catálogo de Películas</h2>
-    <movie-list></movie-list>
+  <!-- HERO -->
+  <section id="hero" class="hero-section fade-item">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="hero-tagline">ACCIÓN · DRAMA · CIENCIA FICCIÓN</p>
+        <h1 class="hero-title">Descubre desde <span>clásicos atemporales</span> hasta éxitos recientes</h1>
+        <p class="hero-description">Una colección de películas icónicas y blockbusters modernos. 
+          Desde The Matrix hasta Oppenheimer, explora películas que marcaron el cine.</p>
+        <div class="hero-actions">
+          <a href="#now-showing" class="btn btn-primary">Películas Populares</a>
+          <a href="#favorites" class="btn btn-ghost">Mis Favoritos</a>
+        </div>
+      </div>
 
-    <h2>⭐ Mis Favoritos</h2>
-    <favorite-list></favorite-list>
-  </main>
+      <featured-movie></featured-movie>
+    </div>
+  </section>
 
-  <footer class="footer">
-    <p>© 2025 - Proyecto Web Components | ESPE</p>
+  <!-- POPULARES -->
+  <section id="now-showing" class="section section-dark fade-item">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Películas Populares</h2>
+        <p class="section-subtitle">Las más vistas y mejor puntuadas recientemente.</p>
+      </div>
+      <movie-list></movie-list>
+    </div>
+  </section>
+
+  <!-- FAVORITOS -->
+  <section id="favorites" class="section section-filmstrip fade-item">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Mis Favoritos</h2>
+        <p class="section-subtitle">Aquí aparecerán tus películas guardadas.</p>
+      </div>
+      <favorite-list></favorite-list>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <trailer-modal></trailer-modal>
+
+  <!-- FOOTER -->
+  <footer class="cinema-footer fade-item">
+    <div class="container footer-inner">
+      <p>© 2025 RetroRank · Film Rating Platform</p>
+      <p class="footer-small">Cine clásico + ranqueo moderno.</p>
+    </div>
   </footer>
 
-  <script type="module" src="./public/js/main.js"></script>
+  <script type="module" src="public/js/main.js"></script>
 </body>
 </html>

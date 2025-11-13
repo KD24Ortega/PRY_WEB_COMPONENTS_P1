@@ -1,25 +1,35 @@
-export class RatingStar extends HTMLElement {
+class RatingStar extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
-  connectedCallback() {
-    const rating = parseInt(this.getAttribute("rating")) || 0;
-    const stars = Array(5)
-      .fill("☆")
-      .map((_, i) => (i < rating ? "★" : "☆"))
-      .join("");
-
-    this.shadowRoot.innerHTML = `
+  static get template() {
+    const template = document.createElement('template');
+    template.innerHTML = `
       <style>
-        .stars {
+        :host {
+          display: inline-block;
+          font-size: 20px;
           color: gold;
-          font-size: 1.3rem;
+          letter-spacing: 3px;
         }
       </style>
-      <div class="stars">${stars}</div>
+      <div id="stars"></div>
     `;
+    return template;
+  }
+
+  connectedCallback() {
+    this.shadowRoot.appendChild(RatingStar.template.content.cloneNode(true));
+    
+    const value = Number(this.getAttribute("value")) || 0;
+    const max = 5;
+    const stars = Array.from({ length: max }, (_, i) =>
+      i < value ? "★" : "☆"
+    ).join(" ");
+
+    this.shadowRoot.getElementById('stars').textContent = stars;
   }
 }
 

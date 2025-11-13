@@ -3,38 +3,31 @@ import { movies } from "./data/movies.js";
 export class MovieList extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open" }); // ← AGREGAR
   }
-
   connectedCallback() {
-    this.renderMovies();
+    this.render();
   }
 
-  renderMovies() {
-    const cards = movies
-      .map(
-        m => `
-        <movie-card
-          id="${m.id}"
-          title="${m.title}"
-          year="${m.year}"
-          image="${m.image}"
-          rating="${m.rating}">
-        </movie-card>
-      `
-      )
-      .join("");
-
+  render() {
     this.shadowRoot.innerHTML = `
-      <style>
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 1rem;
-          padding: 20px;
-        }
-      </style>
-      <div class="grid">${cards}</div>
+      <link rel="stylesheet" href="public/css/styles.css">
+      <div class="movie-grid">
+        ${movies.map(movie => {
+          const ratingValue = (movie.rating.match(/★/g) || []).length;
+          return `
+            <movie-card
+              id="${movie.id}"
+              title="${movie.title}"
+              genre="${movie.genre}"
+              duration="${movie.duration}"
+              poster="${movie.poster}"
+              rating="${ratingValue}"
+              trailer="${movie.trailer}"
+            ></movie-card>
+          `;
+        }).join("")}
+      </div>
     `;
   }
 }
